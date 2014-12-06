@@ -1,0 +1,23 @@
+{
+  "name": "happyjs",
+  "version": "0.0.0",
+  "description": "library for handle HAPI",
+  "main": "index.js",
+  "dependencies": {
+    "hapi": "~7.5.2",
+    "jade": "~1.8.1"
+  },
+  "devDependencies": {
+    "mocha": "~2.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m1uan/happyjs.git"
+  },
+  "author": "Milan Medlik",
+  "license": "MIT",
+  "gitHead": "3e1e51fdf0576d67b8d3df289155ac57f13b3256"
+}
