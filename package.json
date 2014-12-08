@@ -4,8 +4,7 @@
   "description": "library for handle HAPI",
   "main": "index.js",
   "dependencies": {
-    "hapi": "~7.5.2",
-    "jade": "~1.8.1"
+    "hapi": "~7.5.2"
   },
   "devDependencies": {
     "mocha": "~2.0.1"
