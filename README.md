@@ -3,6 +3,36 @@ happyjs
 
 library for easy way to add routes into HAPI server (http://hapijs.com) inspirate by SAILS (http://sailsjs.org/#/)
 
+Create server
+-------------
+
+create file `server.js` :
+
+`var Happy = require('./lib/happy.js');`<br>
+`Happy.start();`
+
+now you can run node server.js
+
+Create controller
+-----------------
+
+create file `IndexCtrl` in directory `ctrls` directory with controllers you can chagne in `config.js` file:
+
+`module.exports = function(){`<br>
+  `index_get = function(request, reply){`<br>
+      `reply('get index'); }`<br>
+  `index_post = function(request, reply){`<br>
+      `reply('post index'); }`<br>
+  `hello_get = function(request, reply){`<br>
+      `reply('hello world'); }`<br>
+`}`<br>
+
+Than you can reach
+GET / : `get index` 200<br>
+POST / : `post index` 200<br>
+GET /hello : `hello world` 200<br>
+
+{you are right word index is reserved}
 
 Co-existenci two controller with similar name
 ---------------------------------------------
