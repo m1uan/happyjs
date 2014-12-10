@@ -53,30 +53,38 @@ GET /hello : hello world 200
 
 {you are right word index is reserved}
 
-# Co-existenci two controller with similar name
+### Co-existenci two controller with similar name
 
 Let's have two controllers in two directories
 
 `ctrls/IndexCtrl`:
 
-`module.exports = function(){`<br>
-  `index_get = function(request, reply){`<br>
-      `reply('index 1'); }`<br>
-  `messages_get = function(request, reply){`<br>
-      `reply('messages 1'); }`<br>
-`}`<br>
+```JavaScript
+module.exports = function(){
+  index_get = function(request, reply){
+      reply('index 1'); 
+  }
+  messages_get = function(request, reply){
+      reply('messages 1'); 
+  }
+}
+```
 
 `ctrls/messages/IndexCtrl`:
 
-`module.exports = function(){`<br>
-  `index_get = function(request, reply){`<br>
-      `reply('index 2'); }`<br>
-  `messages_get = function(request, reply){`<br>
-      `reply('messages 2'); }`<br>
-`}`<br>
+```JavaScript
+module.exports = function(){
+  index_get = function(request, reply){
+      reply('index 2'); 
+  }
+  messages_get = function(request, reply){
+      reply('messages 2'); 
+  }
+}
+```
 
-result will be:
----------------
+#### result will be
+
 GET / : `index 1` 200<br>
 GET /messages : `messages 1` 200<br>
 GET /messages/ : `index 2` 200<br>
