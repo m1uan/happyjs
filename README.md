@@ -3,39 +3,58 @@ happyjs
 
 library for easy way to add routes into HAPI server (http://hapijs.com) inspirate by SAILS (http://sailsjs.org/#/)
 
-Create server
--------------
+
+# Create server
 
 create file `server.js` :
 
-`var Happy = require('./lib/happy.js');`<br>
-`Happy.start();`
+```JavaScript
+var Happy = require('./lib/happy.js');
+Happy.start();
+```
 
 now you can run node server.js
 
-Create controller
------------------
+
+# Create controllers
 
 create file `IndexCtrl` in directory `ctrls` directory with controllers you can chagne in `config.js` file:
 
-`module.exports = function(){`<br>
-  `index_get = function(request, reply){`<br>
-      `reply('get index'); }`<br>
-  `index_post = function(request, reply){`<br>
-      `reply('post index'); }`<br>
-  `hello_get = function(request, reply){`<br>
-      `reply('hello world'); }`<br>
-`}`<br>
+```JavaScript
+module.exports = function(){
+  hello_get = function(request, reply){
+      reply('hello world'); }
+}
+```
+after you type in your browser `localhost/hello` you get `hello world` . Lets make something more complex...
+
+```JavaScript
+module.exports = function(){
+  index_get = function(request, reply){
+      reply('get index'); 
+  }
+  
+  index_post = function(request, reply){
+      reply('post index'); 
+  }
+  
+  hello_get = function(request, reply){
+      reply('hello world'); 
+  }
+}
+```
 
 Than you can reach
-GET / : `get index` 200<br>
-POST / : `post index` 200<br>
-GET /hello : `hello world` 200<br>
+```Request
+GET / : get index 200
+POST / : post index 200
+GET /hello : hello world 200
+```
 
 {you are right word index is reserved}
 
-Co-existenci two controller with similar name
----------------------------------------------
+# Co-existenci two controller with similar name
+
 Let's have two controllers in two directories
 
 `ctrls/IndexCtrl`:
