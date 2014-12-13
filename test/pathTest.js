@@ -98,21 +98,69 @@ describe('ctrl', function(){
 
     describe('ctrls', function(){
         it('simple ctrl', function(cb){
+            var ctrl = {
+                modules_get : function(){
+
+                }
+            }
+
             FakeHapi.route = function(hapiConfig){
                 expect(hapiConfig).to.be.an('object');
                 expect(hapiConfig).to.have.property('path');
                 expect(hapiConfig).to.have.property('config');
                 expect(hapiConfig.config).to.have.property('handler')
+                expect(hapiConfig.config.handler).to.be.equal(ctrl.modules_get)
+                expect(hapiConfig.path).to.equal('/modules')
                 cb();
             }
 
+
+
+            happyCtrl.handleCtrl('Ctrl',ctrl);
+        })
+
+
+        it('simple ctrl with config', function(cb){
             var ctrl = {
-                get : function(){
+                $global : {
+                    // or could be just
+                    auth: false,
+                    cache : {
+                        expiresIn: 5000
+                    }
+                },
+                $post : {
+                    auth : 'session',
+                    validate :{
+                        payload: {
+                            some_joi_testing : {}
+                        }
+                    }
+                },
+                post : function(){
 
                 }
             }
 
-            happyCtrl.handleCtrl('Ctrl',ctrl);
+            FakeHapi.route = function(hapiConfig){
+                expect(hapiConfig).to.be.an('object');
+                expect(hapiConfig).to.have.property('path');
+                expect(hapiConfig).to.have.property('config');
+                expect(hapiConfig.config).to.have.property('handler')
+                expect(hapiConfig.config).to.have.property('validate')
+                expect(hapiConfig.config.validate).to.have.property('payload')
+                expect(hapiConfig.config).to.have.property('cache')
+                expect(hapiConfig.config.cache).to.have.property('expiresIn')
+                expect(hapiConfig.config).to.have.property('auth')
+                expect(hapiConfig.config.auth).to.be.equal('session')
+                expect(hapiConfig.config.handler).to.be.equal(ctrl.post)
+                expect(hapiConfig.path).to.equal('/api/1.0/messages')
+                cb();
+            }
+
+
+
+            happyCtrl.handleCtrl('api/1.0/MessagesCtrl',ctrl);
         })
     });
 
