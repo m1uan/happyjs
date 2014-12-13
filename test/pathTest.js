@@ -183,7 +183,7 @@ describe('ctrl', function(){
         })
     });
 
-    describe('conect', function(){
+    describe('connect', function(){
         it('example 1', function(cb){
             FakeHapi.route = function(hapiConfig){
                 expect(hapiConfig).to.be.an('object');
@@ -208,10 +208,33 @@ describe('ctrl', function(){
                     expect(hapiConfig.config).to.have.property('handler')
                     expect(hapiConfig.path).to.equal('/api/1.0/hotels/{id}/rooms/{room?}')
                 }
-                cb();
+                if(calls == 3){
+                    cb();
+                }
+                //cb();
             }
 
             happyCtrl.connect('../examples/hotels-ctrl/ctrl/api/1.0/HotelsCtrl.js','HotelsCtrl.js','/api/1.0');
+        })
+
+        it('template', function(cb){
+            var calls = 0;
+            FakeHapi.route = function(hapiConfig){
+                calls ++;
+                if(hapiConfig.path.indexOf('template') != -1){
+                    expect(hapiConfig).to.be.an('object');
+                    expect(hapiConfig).to.have.property('path');
+                    expect(hapiConfig).to.have.property('config');
+                    expect(hapiConfig.config).to.have.property('handler')
+                    expect(hapiConfig.path).to.equal('/template')
+                }
+                if(calls == 2){
+                    cb();
+                }
+                //cb();
+            }
+
+            happyCtrl.connect('../examples/hotels-ctrl/ctrl/Ctrl.js','Ctrl.js','');
         })
     })
 

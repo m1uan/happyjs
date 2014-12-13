@@ -20,5 +20,8 @@ module.exports = (function(){
     }
 
 
+    self.template_get = function(request, reply){
+        reply('just for test')
+    }
     return self;
 })();
