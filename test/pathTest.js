@@ -25,7 +25,7 @@ describe('ctrl', function(){
 
             expect(hapiConfig).to.be.an('object');
             expect(hapiConfig).to.have.property('path')
-            expect(hapiConfig.path).to.equal('');
+            expect(hapiConfig.path).to.equal('/');
         })
 
         it('hotels post', function(){
@@ -163,6 +163,34 @@ describe('ctrl', function(){
             happyCtrl.handleCtrl('api/1.0/MessagesCtrl',ctrl);
         })
     });
+
+    describe('conect', function(){
+        it('example 1', function(cb){
+            FakeHapi.route = function(hapiConfig){
+                expect(hapiConfig).to.be.an('object');
+                expect(hapiConfig).to.have.property('path');
+                expect(hapiConfig).to.have.property('config');
+                expect(hapiConfig.config).to.have.property('handler')
+                expect(hapiConfig.path).to.equal('/')
+                cb();
+            }
+
+            happyCtrl.connect('../examples/simple-ctrl/ctrl/IndexCtrl.js','Ctrl');
+        })
+
+        it.skip('example 1', function(cb){
+            FakeHapi.route = function(hapiConfig){
+                expect(hapiConfig).to.be.an('object');
+                expect(hapiConfig).to.have.property('path');
+                expect(hapiConfig).to.have.property('config');
+                expect(hapiConfig.config).to.have.property('handler')
+                expect(hapiConfig.path).to.equal('/')
+                cb();
+            }
+
+            happyCtrl.connect('../examples/messages-ctrl/ctrl/api/1.0/MessagesCtrl.js','ctrl/api/1.0/MessagesCtrl');
+        })
+    })
 
 
 })

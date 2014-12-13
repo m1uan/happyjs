@@ -24,7 +24,7 @@ module.exports = (function(){
      * }
      */
 
-    self.index_get = function(request, reply){
+    self.get = function(request, reply){
         console.log(reply);
         reply('hello world');
     }
