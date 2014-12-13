@@ -34,7 +34,7 @@ describe('path', function(){
         expect(hapiConfig.method).to.equal('POST');
     })
 
-    it.only('hotels/{idhotel} delete', function(){
+    it('hotels/{idhotel} delete', function(){
         var config = {
             params: '{idhotel}'
         }
@@ -48,6 +48,44 @@ describe('path', function(){
         expect(hapiConfig).to.have.property('method')
         expect(hapiConfig.path).to.equal('/hotels/{idhotel}');
         expect(hapiConfig.method).to.equal('DELETE');
+    })
+
+    it('hotels/{idhotel}/rooms put', function(){
+        var config = {
+            params: {
+                hotels: '{idhotel}'
+            }
+        }
+        var name = 'hotels_rooms_put';
+        var ctrl = function(){}
+        var hapiConfig = happyCtrl.generatePath(name, ctrl, config);
+
+
+        expect(hapiConfig).to.be.an('object');
+        expect(hapiConfig).to.have.property('path')
+        expect(hapiConfig).to.have.property('method')
+        expect(hapiConfig.path).to.equal('/hotels/{idhotel}/rooms');
+        expect(hapiConfig.method).to.equal('PUT');
+    })
+
+
+    it('{idhotel}/message/{idmessage} patch', function(){
+        var config = {
+            params: {
+                _: '{idhotel}',
+                message: '{idmessage}'
+            }
+        }
+        var name = 'message_patch';
+        var ctrl = function(){}
+        var hapiConfig = happyCtrl.generatePath(name, ctrl, config);
+
+
+        expect(hapiConfig).to.be.an('object');
+        expect(hapiConfig).to.have.property('path')
+        expect(hapiConfig).to.have.property('method')
+        expect(hapiConfig.path).to.equal('/{idhotel}/message/{idmessage}');
+        expect(hapiConfig.method).to.equal('PATCH');
     })
 
 })
