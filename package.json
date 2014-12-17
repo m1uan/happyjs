@@ -1,6 +1,6 @@
 {
   "name": "happyjs",
-  "version": "0.0.0",
+  "version": "0.7.0",
   "description": "library for handle HAPI",
   "main": "index.js",
   "dependencies": {
